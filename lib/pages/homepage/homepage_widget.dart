@@ -49,7 +49,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 1.0,
+                width: MediaQuery.sizeOf(context).width * 1.0,
                 height: 85.0,
                 decoration: BoxDecoration(
                   color: Color(0xFF473488),
@@ -108,7 +108,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 1.0,
+                  width: MediaQuery.sizeOf(context).width * 1.0,
                   height: 106.0,
                   decoration: BoxDecoration(),
                   child: Stack(

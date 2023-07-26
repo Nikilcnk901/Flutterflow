@@ -34,7 +34,7 @@ String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
     return '';
   }
   if (format == 'relative') {
-    return timeago.format(dateTime, locale: locale);
+    return timeago.format(dateTime, locale: locale, allowFromNow: true);
   }
   return DateFormat(format, locale).format(dateTime);
 }
@@ -181,7 +181,7 @@ const kBreakpointSmall = 479.0;
 const kBreakpointMedium = 767.0;
 const kBreakpointLarge = 991.0;
 bool isMobileWidth(BuildContext context) =>
-    MediaQuery.of(context).size.width < kBreakpointSmall;
+    MediaQuery.sizeOf(context).width < kBreakpointSmall;
 bool responsiveVisibility({
   required BuildContext context,
   bool phone = true,
@@ -189,7 +189,7 @@ bool responsiveVisibility({
   bool tabletLandscape = true,
   bool desktop = true,
 }) {
-  final width = MediaQuery.of(context).size.width;
+  final width = MediaQuery.sizeOf(context).width;
   if (width < kBreakpointSmall) {
     return phone;
   } else if (width < kBreakpointMedium) {
@@ -279,7 +279,11 @@ extension ListDivideExt<T extends Widget> on Iterable<T> {
       : (enumerate.map((e) => [e.value, t]).expand((i) => i).toList()
         ..removeLast());
 
-  List<T> around(T t) => toList()
-    ..insert(0, t)
-    ..add(t);
+  List<Widget> around(Widget t) => addToStart(t).addToEnd(t);
+
+  List<Widget> addToStart(Widget t) =>
+      enumerate.map((e) => e.value).toList()..insert(0, t);
+
+  List<Widget> addToEnd(Widget t) =>
+      enumerate.map((e) => e.value).toList()..add(t);
 }

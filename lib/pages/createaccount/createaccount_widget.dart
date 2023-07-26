@@ -80,7 +80,7 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 20.0, 15.0, 0.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
                           height: 85.0,
                           decoration: BoxDecoration(),
                           child: Row(
@@ -118,7 +118,7 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(12.0, 20.0, 0.0, 0.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 70.0,
                       decoration: BoxDecoration(),
                       child: Row(
@@ -163,7 +163,7 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 1.0,
+                    width: MediaQuery.sizeOf(context).width * 1.0,
                     height: 434.0,
                     decoration: BoxDecoration(),
                     child: Column(
@@ -438,13 +438,12 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                                 return;
                               }
 
-                              final usersCreateData = createUsersRecordData(
-                                displayName: _model.nameController.text,
-                                photoUrl: '',
-                              );
                               await UsersRecord.collection
                                   .doc(user.uid)
-                                  .update(usersCreateData);
+                                  .update(createUsersRecordData(
+                                    displayName: _model.nameController.text,
+                                    photoUrl: '',
+                                  ));
 
                               context.goNamedAuth('Homepage', context.mounted);
                             },
